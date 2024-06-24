@@ -1,0 +1,21 @@
+{% extends 'testing/sidebar.html' %}
+{% load static %}
+{% block sidebar_content %}
+<div class="manual-tests-container">
+    <a href="{% url 'testing:create_test_case' %}" class="create-test-case-button">Создать новый тест-кейс</a>
+    {% include 'testing/filterform.html' %}
+    <h4>Тест-кейсы:</h4>
+    <div class="created-test-cases">
+        {% for case in cases %}
+        <a href="{% url 'testing:test_case_details' case.id %}" class="test-case-link">
+            <div class="test-case-item {% if case.status == 'not_tested' %}not-tested{% elif case.status == 'passed' %}passed{% elif case.status == 'failed' %}failed{% endif %}">
+                <strong>{{ case.name }}</strong> - {{ case.description }}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
+

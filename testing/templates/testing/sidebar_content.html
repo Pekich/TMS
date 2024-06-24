@@ -1,0 +1,18 @@
+            
+<div class="sidebar">
+    <h3>Тестовый проект</h3>
+    <div class="menu">
+        <button class="menu-toggle">Тесты</button>
+        <ul class="menu-items">
+            <li><a href="{% url 'testing:manual_tests' %}">Тест-кейсы</a></li>
+            <li><a href="{% url 'testing:check_list' %}">Чек-листы</a></li>
+            <li><a href="{% url 'testing:test_plans' %}">Тест-план</a></li>
+        </ul>
+    <ul class="menu-item-auto">
+        <li><a href="{% url 'testing:auto_test_list' %}">Автотесты</a></li>
+        <li><a href="{% url 'testing:bug_list' %}">Баг-репорты</a></li>
+        <li><a href="{% url 'testing:statistics' %}">Статистика</a></li>
+    </ul>
+</div>
+
+

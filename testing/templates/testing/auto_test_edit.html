@@ -1,0 +1,44 @@
+{% extends 'testing/base.html' %}
+
+{% block content %}
+
+{% include 'testing/sidebar_content.html' %}
+
+<div class="check-list-container">
+    <a href="{% url 'testing:auto_test_create' %}" class="create-checklist-button">Добавить новый автотест</a>
+    <a href="{% url 'testing:runall_autotests' %}" class="run_autotest-button">Запустить автотесты</a>
+    <h4>Автотесты:</h4>
+    <div class="created-checklist">
+        {% for auto_test in auto_tests %}
+        <a href="{% url 'testing:auto_test_detail' auto_test.id %}" class="checklist-link">
+            <div class="checklist-item {% if auto_test.status == 'not_tested' %}not-tested{% elif auto_test.status == 'passed' %}passed{% elif auto_test.status == 'failed' %}failed{% endif %}">
+                <strong>{{ auto_test.name }} - Статус: {{ auto_test.status }}</strong>         
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+
+    <div class="autoform-container">
+        <form method="post" class="test-case-form">
+            <h1>{% if form3.instance.pk %}Редактировать{% else %}Create{% endif %} автотест</h1>
+            <form method="post" enctype="multipart/form-data" class="test-case-form">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="{{ form3.name.id_for_label }}">Название:</label>
+                {{ form3.name }}
+              </div>
+              <div class="form-group">
+                <label for="{{ form3.description.id_for_label }}">Описание:</label>
+                {{ form3.description }}
+              </div>
+              <div class="form-group">
+                <label for="{{ form3.test_file.id_for_label }}">Файл теста:</label>
+                {{ form3.test_file }}
+              </div>
+              <button type="submit" class="btn btn-primary">Сохранить</button>
+            </form>
+        </form>
+    </div>
+
+{% endblock %}

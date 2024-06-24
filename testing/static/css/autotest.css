@@ -1,0 +1,120 @@
+.run_autotest-button {
+   
+    padding: 10px 20px;
+    background-color: #06be25;
+    color: white;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 5px;
+    border-bottom: 2px solid #000000;
+}
+
+.run_autotest2-button:hover {
+    background-color: #179905;
+}
+
+.run_autotest2-button {
+    position: absolute;
+    padding: 10px 20px;
+    background-color: #06be25;
+    color: white;
+    border: none;
+    bottom: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 5px;
+    width: 5%;
+    border-bottom: 2px solid #000000;
+}
+
+.run_autotest-button:hover {
+    background-color: #179905;
+}
+
+
+
+.autotest-details {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    min-height: 35vh;
+    width: 630px;
+    padding-right: 161px;
+    word-wrap: break-word;
+    position: relative; 
+}
+
+
+
+.autotest-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    position: absolute;
+    top: 0;
+    margin-top: -1px;
+    margin-left: 720px;
+    height: 50vh;
+    padding-right: 150px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+.autoform-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    position: absolute;
+    top: 0;
+    margin-top: -1px;
+    margin-left: 720px;
+    height: 50vh;
+    padding-right: 150px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+.autotest-details h6{
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    right: 140px;
+}
+
+.autotest-details h7{
+    font-weight: bold;
+    font-size: 15px;
+    position: absolute;
+    top: 30px;
+    right:10px;
+ 
+}
+
+.autotest-details h5{
+    font-weight: bold;
+    font-size: 15px;
+    position: absolute;
+    top:230px;
+    right: 60px;
+}
+
+.autotest-details h4{
+    font-weight: bold;
+    font-size: 15px;
+    position: absolute;
+    top:220px;
+    right: 60px;
+}

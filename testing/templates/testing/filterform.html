@@ -1,0 +1,55 @@
+<form method="get"  class="filter-form">
+    <label for="filter">Фильтр:</label>
+    <select id="filter" name="filter" onchange="toggleFilterInputs(this.value)">
+        <option value="">Выберите фильтр</option>
+        <option value="id-sort" {% if request.GET.filter == "id-sort" %}selected{% endif %}>ID</option>
+        <option value="name" {% if request.GET.filter == "name" %}selected{% endif %}>Имя</option>
+        <option value="status" {% if request.GET.filter == "status" %}selected{% endif %}>Статус</option>
+    </select>
+    <div>
+        <div id="filter-id-sort" class="filter-input" style="display: none;">
+            <label for="id-sort">ID:</label>
+            <select id="id-sort" name="id-sort">
+                <option value="asc" {% if request.GET.id_sort == "asc" %}selected{% endif %}>По возрастанию</option>
+                <option value="desc" {% if request.GET.id_sort == "desc" %}selected{% endif %}>По убыванию</option>
+            </select>
+        </div>
+
+        <div id="filter-name" class="filter-input" style="display: none;">
+            <label for="name">Имя:</label>
+            <input type="text" id="name" name="name" value="{{ request.GET.name }}">
+        </div>
+
+        <div id="filter-status" class="filter-input" style="display: none;">
+            <label for="status">Статус:</label>
+            <select id="status" name="status">
+                <option value="">Все</option>
+                <option value="not_tested" {% if request.GET.status == "not_tested" %}selected{% endif %}>Не проверен</option>
+                <option value="passed" {% if request.GET.status == "passed" %}selected{% endif %}>Пройден</option>
+                <option value="failed" {% if request.GET.status == "failed" %}selected{% endif %}>Провален</option>
+            </select>
+        </div>
+        <button type="submit" id="apply-button" style="display: none;">Применить</button>
+    </div>
+</form>
+
+<script>
+    function toggleFilterInputs(filter) {
+        document.querySelectorAll('.filter-input').forEach(function(element) {
+            element.style.display = 'none';
+        });
+        var applyButton = document.getElementById('apply-button');
+        if (filter) {
+            document.getElementById('filter-' + filter).style.display = 'flex';
+            applyButton.style.display = 'inline-block';
+        } else {
+            applyButton.style.display = 'none';
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        var filter = document.getElementById('filter').value;
+        if (filter) {
+            toggleFilterInputs(filter);
+        }
+    });
+    </script>

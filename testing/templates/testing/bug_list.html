@@ -1,0 +1,23 @@
+{% extends 'testing/base.html' %}
+{% load static %}
+{% block content %}
+{% include 'testing/sidebar_content.html' %}
+
+
+<div class="check-list-container">
+    <a href="{% url 'testing:create_bug' %}" class="create-checklist-button">Создать новый Баг-репорт</a>
+    <h4>Баг-репорты:</h4>
+    <div class="created-checklist">
+        {% for bug in bugs %}
+        <a href="{% url 'testing:bug_detail' bug.id %}" class="checklist-link">
+            <div class="checklist-item {% if checklist.status == 'not_tested' %}not-tested{% elif checklist.status == 'passed' %}passed{% elif checklist.status == 'failed' %}failed{% endif %}">
+                <strong>{{ bug.summary }}</strong>- </strong> - {{ bug.priority }}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}

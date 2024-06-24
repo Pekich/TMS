@@ -1,0 +1,51 @@
+{% extends 'testing/base.html' %}
+{% load static %}
+{% block content %}
+{% include 'testing/sidebar_content.html' %}
+
+<div class="manual-tests-container">
+    <a href="{% url 'testing:testplan_create' %}" class="create-test-case-button">Создать новый тест-план</a>
+    {% include 'testing/filterform3.html' %}
+    <h4>Тест-планы:</h4>
+    <div class="created-testplan">
+        {% for testplan in testplans %}
+        <a href="{% url 'testing:testplan_details' testplan.id %}" class="testplan-link">
+            <div class="testplan-item {% if testplan.status == 'not_start' %}not_start{% elif testplan.status == 'in_progress' %}in_progress{% elif testplan.status == 'completed' %}completed{% endif %}">
+                <strong>{{ testplan.name }}</strong>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+    <div class="testplan-container">
+        <div class="testplan-details">
+            <h2>Модуль: {{ testplan.name }}</h2>
+            <h9>Описание:</h9>
+            <h3>{{ testplan.description }}</h3>
+            <h4>Начало: {{ testplan.start_date }}</h4>
+            <h5>Конец: {{ testplan.end_date }}</h5>
+            <h6>Создано: {{ testplan.created_at|date:"d.m.Y H:i" }}</h6>
+            <h7>Обновлено: {{ testplan.updated_at|date:"d.m.Y H:i" }}</h7>
+            <h8>Приоритет: {{ testplan.priority }}</h8>
+        <form action="{% url 'testing:update_testplanstatus' testplan.id %}" method="post" class="status-planform">
+            {% csrf_token %}
+            <label for="status">Статус:</label>
+            <select name="status" id="status">
+                <option value="not_start" {% if testplan.status == 'not_start' %}selected{% endif %}>Не начат</option>
+                <option value="in_progress" {% if testplan.status == 'in_progress' %}selected{% endif %}>В процессе</option>
+                <option value="completed" {% if testplan.status == 'completed' %}selected{% endif %}>Завершен</option>
+            </select>
+            <button type="submit">Обновить статус</button>
+        </form>
+        
+            <a href="{% url 'testing:edit_testplan' testplan.id %}" class="edit-plbutton">Редактировать</a>  
+            <form action="{% url 'testing:delete_testplan' testplan.id %}" method="post" class="delete-plform">
+                {% csrf_token %}
+                <button type="submit" class="delete-clbutton">Удалить</button>
+            </form>
+        </div>
+    </div>  
+</div>
+
+{% endblock %}

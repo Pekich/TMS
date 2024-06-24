@@ -1,0 +1,19 @@
+{% extends 'testing/sidebar.html' %}
+{% load static %}
+{% block sidebar_content %}
+<div class="manual-tests-container">
+    <a href="{% url 'testing:testplan_create' %}" class="create-test-case-button">Создать новый тест-план</a>
+    {% include 'testing/filterform3.html' %}
+    <h4>Тест-планы:</h4>
+    <div class="created-testplan">
+        {% for testplan in testplans %}
+        <a href="{% url 'testing:testplan_details' testplan.id %}" class="testplan-link">
+            <div class="testplan-item {% if testplan.status == 'not_start' %}not_start{% elif testplan.status == 'in_progress' %}in_progress{% elif testplan.status == 'completed' %}completed{% endif %}">
+                <strong>{{ testplan.name }}</strong>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

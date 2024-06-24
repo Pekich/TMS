@@ -1,0 +1,37 @@
+{% extends 'testing/base.html' %}
+{% load static %}
+{% block content %}
+{% include 'testing/sidebar_content.html' %}
+
+
+<div class="check-list-container">
+    <a href="{% url 'testing:create_bug' %}" class="create-checklist-button">Создать новый Баг-репорт</a>
+    <h4>Баг-репорты:</h4>
+    <div class="created-checklist">
+        {% for bug in bugs %}
+        <a href="{% url 'testing:bug_detail' bug.id %}" class="checklist-link">
+            <div class="checklist-item {% if checklist.status == 'not_tested' %}not-tested{% elif checklist.status == 'passed' %}passed{% elif checklist.status == 'failed' %}failed{% endif %}">
+                <strong>{{ bug.summary }}</strong>- </strong> - {{ bug.priority }}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+    <div class="bug-info">
+        <div class="bug-details">
+            <h2>Название: {{ bug.summary }}</h2>
+            <h3>Описание: {{ bug.description }}</h3>
+            <h4>Создано: {{ bug.created_at|date:"d.m.Y H:i" }}</h4>
+            <h5>Обновлено: {{ bug.updated_at|date:"d.m.Y H:i" }}</h5>
+            <h6>Приоритет: {{ bug.priority }}</h6>
+            <form action="{% url 'testing:delete_bug' bug.id %}" method="post" class="delete-clform">
+                {% csrf_token %}
+                <a href="{% url 'testing:bug_edit' bug.id %}" class="edit-clbutton">Редактировать</a> 
+                <button type="submit" class="delete-clbutton">Удалить</button>
+            </form>
+        </div>
+    </div>  
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'testing/base.html' %}
+{% load static %}
+{% block content %}
+{% include 'testing/sidebar_content.html' %}
+
+<div class="manual-tests-container">
+    <a href="{% url 'testing:testplan_create' %}" class="create-test-case-button">Создать новый тест-план</a>
+    {% include 'testing/filterform3.html' %}
+    <h4>Тест-планы:</h4>
+    <div class="created-testplan">
+        {% for testplan in testplans %}
+        <a href="{% url 'testing:testplan_details' testplan.id %}" class="testplan-link">
+            <div class="testplan-item {% if testplan.status == 'not_start' %}not_start{% elif testplan.status == 'in_progress' %}in_progress{% elif testplan.status == 'completed' %}completed{% endif %}">
+                <strong>{{ testplan.name }}</strong>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+
+
+    <div class="planform-container">
+        <form method="post" class="test-plan-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form3.name.id_for_label }}">Название:</label>
+                {{ form3.name }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form3.description.id_for_label }}">Описание:</label>
+                {{ form3.description }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form3.start_date.id_for_label }}">Дата начала:</label>
+                {{ form3.start_date }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form3.end_date.id_for_label }}">Дата окончания:</label>
+                {{ form3.end_date }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form3.priority.id_for_label }}">Приоритет:</label>
+                {{ form3.priority }}
+            </div>
+            <button type="submit" class="btn btn-primary">Создать</button>
+        </form>
+    </div>
+    
+<script src="{% static 'js/keep-scroll-position.js' %}"></script>
+{% endblock %}

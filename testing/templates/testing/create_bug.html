@@ -1,0 +1,40 @@
+{% extends 'testing/base.html' %}
+{% load static %}
+{% block content %}
+{% include 'testing/sidebar_content.html' %}
+<div class="check-list-container">
+    <a href="{% url 'testing:create_bug' %}" class="create-checklist-button">Создать новый Баг-репорт</a>
+    <h4>Баг-репорты:</h4>
+    <div class="created-checklist">
+        {% for bug in bugs %}
+        <a href="{% url 'testing:bug_detail' bug.id %}" class="checklist-link">
+            <div class="checklist-item {% if checklist.status == 'not_tested' %}not-tested{% elif checklist.status == 'passed' %}passed{% elif checklist.status == 'failed' %}failed{% endif %}">
+                <strong>{{ bug.summary }}</strong>- </strong> - {{ bug.priority }}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+
+    <div class="checkform-container">
+        <form method="post" class="test-case-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form2.name.id_for_label }}">Название:</label>
+                {{ form4.summary }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form2.description.id_for_label }}">Описание:</label>
+                {{ form4.description }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form4.description.id_for_label }}">Приоритет:</label>
+                {{ form4.priority }}
+            </div>
+          
+            <button type="submit" class="btn btn-primary">Создать</button>
+        </form>
+    </div>
+
+
+{% endblock %}

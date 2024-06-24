@@ -1,0 +1,65 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/checkstyle.css' %}">
+<link rel="stylesheet" href="{% static 'css/testplan.css' %}">
+<link rel="stylesheet" href="{% static 'css/autotest.css' %}">
+<link rel="stylesheet" href="{% static 'css/bugstyle.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Test Management System{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/checkstyle.css' %}">
+    <link rel="stylesheet" href="{% static 'css/testplan.css' %}">
+    <link rel="stylesheet" href="{% static 'css/autotest.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bugstyle.css' %}">
+</head>
+
+<body>
+            <header>
+                <h1>Test Management System</h1>
+                <nav>
+                    <ul>
+                        <li><a href="{% url 'testing:home' %}">Главная</a></li>
+                        <li><a href="{% url 'testing:tests' %}">Тестирование</a></li>
+                    </ul>
+                </nav>
+            </header>
+    
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 Test Management System</p>
+        </div>
+    </footer>
+{% block extra_js %}
+<script src="{% static 'js/keep-scroll-position.js' %}"></script>
+{% endblock %}
+</body>
+
+</html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menuItems = document.querySelector('.menu-items');
+
+    // Загрузка сохранённого состояния меню
+    if (localStorage.getItem('menuOpen') === 'true') {
+        menuItems.classList.add('active');
+    }
+
+    menuToggle.addEventListener('click', function () {
+        menuItems.classList.toggle('active');
+        // Сохраняем состояние меню
+        localStorage.setItem('menuOpen', menuItems.classList.contains('active'));
+    });
+});
+
+</script>
+  

@@ -1,0 +1,50 @@
+{% extends 'testing/base.html' %}
+{% load static %}
+{% block content %}
+{% include 'testing/sidebar_content.html' %}
+
+<div class="manual-tests-container">
+    <a href="{% url 'testing:create_test_case' %}" class="create-test-case-button">Создать новый тест-кейс</a>
+    {% include 'testing/filterform.html' %}
+    <h4>Тест-кейсы:</h4>
+    <div class="created-test-cases">
+        {% for case in cases %}
+        <a href="{% url 'testing:test_case_details' case.id %}" class="test-case-link">
+            <div class="test-case-item {% if case.status == 'not_tested' %}not-tested{% elif case.status == 'passed' %}passed{% elif case.status == 'failed' %}failed{% endif %}">
+                <strong>{{ case.name }}</strong> - {{ case.description }}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+
+
+
+   
+
+    <div class="form-container">
+        <form method="post" class="test-case-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.name.id_for_label }}">Название:</label>
+                {{ form.name }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.description.id_for_label }}">Описание:</label>
+                {{ form.description }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.steps.id_for_label }}">Шаги:</label>
+                {{ form.steps }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.expected_result.id_for_label }}">Ожидаемый результат:</label>
+                {{ form.expected_result }}
+            </div>
+            <button type="submit" class="btn btn-primary">Создать</button>
+        </form>
+    </div>
+</div>   
+<script src="{% static 'js/keep-scroll-position.js' %}"></script>
+{% endblock %}
+

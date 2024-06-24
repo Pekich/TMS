@@ -1,0 +1,22 @@
+{% extends 'testing/base.html' %}
+{% load static %}
+{% block content %}
+{% include 'testing/sidebar_content.html' %}
+
+<div class="check-list-container">
+    <a href="{% url 'testing:create_checklist' %}" class="create-checklist-button">Создать новый чек-лист</a>
+    {% include 'testing/filterform2.html' %}
+    <h4>Чек-листы:</h4>
+    <div class="created-checklist">
+        {% for checklist in checklists %}
+        <a href="{% url 'testing:checklist_details' checklist.id %}" class="checklist-link">
+            <div class="checklist-item {% if checklist.status == 'not_tested' %}not-tested{% elif checklist.status == 'passed' %}passed{% elif checklist.status == 'failed' %}failed{% endif %}">
+                <strong>{{ checklist.name }}</strong>- </strong> - {{ checklist.description }}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

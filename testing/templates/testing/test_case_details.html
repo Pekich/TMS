@@ -1,0 +1,92 @@
+{% extends 'testing/base.html' %}
+{% load static %}
+{% block content %}  
+{% include 'testing/sidebar_content.html' %}
+
+<!-- testing/manual_tests.html -->
+<div class="manual-tests-container">
+    <a href="{% url 'testing:create_test_case' %}" class="create-test-case-button">Создать новый тест-кейс</a>
+    {% include 'testing/filterform.html' %}
+    <h4>Тест-кейсы:</h4>
+    <div class="created-test-cases">
+        {% for case in cases %}
+        <a href="{% url 'testing:test_case_details' case.id %}" class="test-case-link">
+            <div class="test-case-item {% if case.status == 'not_tested' %}not-tested{% elif case.status == 'passed' %}passed{% elif case.status == 'failed' %}failed{% endif %}">
+                <strong>{{ case.name }}</strong> - {{ case.description }}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+
+<!-- testing/test_case_details.html -->
+<div class="test-container">
+    <div class="test-case-details">
+        <div class="test-case-header">
+            <h1 class="header-id">ID</h1>
+            <h2 class="header-name">Название</h2>
+            <h3 class="header-description">Описание</h3>
+            <h5 class="header-steps">Шаги</h5>
+            <h6 class="header-expected-result">Ожидаемый результат</h6>
+        </div>
+        <div class="test-case-content">
+            <div class="test-case-section">
+                <p>{{ case.id }}</p>
+            </div>
+            <div class="test-case-section text-left-name">
+                <p>{{ case.name }}</p>
+            </div>
+            <div class="test-case-section text-left-name-2">
+                <p>{{ case.description }}</p>
+            </div>
+            <div class="test-case-section text-left-name-3">
+                <p>{{ case.steps }}</p>
+            </div>
+            <div class="test-case-section text-left-name-4">
+                <p>{{ case.expected_result }}</p>
+            </div>
+        </div>
+     
+  
+    
+        
+        <div class="form-buttons-container">
+
+            <div class="test-case-date">
+                
+                Создано: {{ case.created_at|date:"d.m.Y H:i" }}
+                
+            </div>
+            <div class="test-case-date-2">
+                <div class="test-case-date-3">
+                    Редактировано: {{ case.updated_at|date:"d.m.Y H:i" }}
+                </div>
+                <form action="{% url 'testing:update_status' case.id %}" method="post" class="status-form">
+                    {% csrf_token %}
+                    <label for="status">Статус:</label>
+                    <select name="status" id="status">
+                        <option value="not_tested" {% if case.status == 'not_tested' %}selected{% endif %}>Не проверен</option>
+                        <option value="passed" {% if case.status == 'passed' %}selected{% endif %}>Пройден</option>
+                        <option value="failed" {% if case.status == 'failed' %}selected{% endif %}>Провален</option>
+                    </select>
+                    <button type="submit">Обновить статус</button>
+                </form>
+            </div>
+            <a href="{% url 'testing:edit_test_case' case.id %}" class="edit-button">Редактировать</a>  <!-- Добавлена кнопка редактирования -->
+            <form action="{% url 'testing:delete_test_case' case.id %}" method="post" class="delete-form">
+                {% csrf_token %}
+                <button type="submit" class="delete-button">Удалить</button>
+            </form>
+
+    </div>
+</div>
+
+</div>
+
+
+<script>
+</script>
+    
+<script src="{% static 'js/keep-scroll-position.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'testing/base.html' %}
+{% load static %}
+{% block content %}
+{% include 'testing/sidebar_content.html' %}
+
+<div class="check-list-container">
+    <a href="{% url 'testing:create_checklist' %}" class="create-checklist-button">Создать новый чек-лист</a>
+    {% include 'testing/filterform2.html' %}
+    <h4>Чек-листы:</h4>
+    <div class="created-checklist">
+        {% for checklist in checklists %}
+        <a href="{% url 'testing:checklist_details' checklist.id %}" class="checklist-link">
+            <div class="checklist-item {% if checklist.status == 'not_tested' %}not-tested{% elif checklist.status == 'passed' %}passed{% elif checklist.status == 'failed' %}failed{% endif %}">
+                <strong>{{ checklist.name }}</strong>- </strong> - {{ checklist.description }}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+    <div class="check-list-info">
+        <div class="check-list-details">
+            <h2>Модуль: {{ checklist.name }}</h2>
+            <h3>Описание: {{ checklist.description }}</h3>
+            <h4>Создано: {{ checklist.created_at|date:"d.m.Y H:i" }}</h4>
+            <h5>Обновлено: {{ checklist.updated_at|date:"d.m.Y H:i" }}</h5>
+        <form action="{% url 'testing:update_checkstatus' checklist.id %}" method="post" class="status-checkform">
+            {% csrf_token %}
+            <label for="status">Статус:</label>
+            <select name="status" id="status">
+                <option value="not_tested" {% if checklist.status == 'not_tested' %}selected{% endif %}>Не проверен</option>
+                <option value="passed" {% if checklist.status == 'passed' %}selected{% endif %}>Пройден</option>
+                <option value="failed" {% if checklist.status == 'failed' %}selected{% endif %}>Провален</option>
+            </select>
+            <button type="submit">Обновить статус</button>
+        </form>
+            <a href="{% url 'testing:edit_checklist' checklist.id %}" class="edit-clbutton">Редактировать</a>  
+            <form action="{% url 'testing:delete_Checklist' checklist.id %}" method="post" class="delete-clform">
+                {% csrf_token %}
+                <button type="submit" class="delete-clbutton">Удалить</button>
+            </form>
+        </div>
+    </div>  
+</div>
+
+{% endblock %}

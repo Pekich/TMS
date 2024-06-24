@@ -1,0 +1,290 @@
+
+.testplan-container {
+    justify-content: center; 
+    align-items: flex-start; 
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    margin-left: 680px;
+    margin-top: 133px;
+}
+
+.testplan-details {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    min-height: 70vh;
+    width: 950px;
+    padding-right: 161px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.created-testplan {
+    padding: 20px;
+    max-height: 70vh; 
+    overflow-y: auto;
+    direction: rtl;
+
+}
+
+.created-testplan::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    direction: ltr;
+}
+
+.created-testplan::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.created-testplan::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px; 
+}
+
+.created-testplan::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+
+
+
+.status-planform label {
+    font-weight: bold;
+    bottom: 63px;
+    position: absolute;
+}
+
+.status-planform select {
+    top: 70%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    position: absolute;
+    top: 652px;
+    margin-left: 65px;
+}
+
+.status-planform button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border-bottom: 2px solid #000000;
+    position: absolute;
+    margin-left: 195px;
+    top: 642px;
+}
+
+.status-planform button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.edit-plbutton {
+    background-color: #007bff;
+    margin-right: -100px;
+    border-bottom: 2px solid #000000;
+
+    margin-top: 600px;
+    position: absolute;
+    bottom: 49px;
+    right: 10px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 5px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    border-bottom: 2px solid #000000;
+    margin-right: 170px;
+}
+
+.delete-plbutton {
+    background-color: red;
+    margin-top: 500px;
+    position: absolute;
+    bottom: 44px;
+    right: 10px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 5px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    border-bottom: 2px solid #000000;
+    margin-right: 50px;
+    
+}
+
+.edit-plbutton:hover {
+    background-color: #0056b3;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); 
+}
+
+.delete-plbutton:hover {
+    background-color: darkred;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); 
+}
+
+.testplan-container {
+    justify-content: center; 
+    align-items: flex-start; 
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    margin-left: 680px;
+    margin-top: 133px;
+}
+
+.testplan-details {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    min-height: 70vh;
+    width: 950px;
+    padding-right: 161px;
+   
+}
+
+.testplan-details h7{
+    top: 600px;
+    position: absolute;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.testplan-details h6{
+    top: 583px;
+    font-size: 15px;
+    position: absolute;
+    font-weight: bold;
+}
+
+.testplan-details h8{
+    top: 40px;
+    font-size: 15px;
+    position: absolute;
+    font-weight: bold;
+}
+
+.testplan-details h4{
+    top: 40px;
+    font-size: 15px;
+    position: absolute;
+    font-weight: bold;
+    right: 100px;
+}
+
+.testplan-details h5{
+    top: 55px;
+    font-size: 15px;
+    position: absolute;
+    font-weight: bold;
+    right: 100px;
+}
+.testplan-details h3{
+    word-wrap: break-word;
+    height: 450px;
+    overflow-y: auto;
+    direction: rtl; 
+    text-align: left; 
+}
+
+
+.testplan-item.not_start {
+    background-color: #f0f0f0;
+
+}
+
+.testplan-item.in_progress {
+    background-color: #baeef1;
+
+}
+
+.testplan-item.completed {
+    background-color: #d4edda;
+
+}
+
+
+
+.testplan-item {
+    padding: 15px;
+    background-color: #ffffff; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s, color 0.3s; 
+    direction: ltr;
+    width: 270px;
+    word-wrap: break-word;
+
+}
+
+.testplan-item strong {
+    font-size: 16px;
+    color: #0056b3; 
+}
+
+.testplan-link:hover {
+    background-color: #e0e0e0; 
+    color: #0056b3; 
+}
+.testplan-link {
+    display: block;
+    text-decoration: none;
+    margin: 10px 0; 
+}
+
+.planform-container {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    position: absolute;
+    top: 0;
+    margin-top: 0px;
+    margin-left: 400px;
+    height: 70vh;
+    padding-right: 260px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.edit-plbutton {
+    background-color: #007bff;
+    margin-right: -100px;
+    border-bottom: 2px solid #000000;
+
+    margin-top: 600px;
+    position: absolute;
+    bottom: 49px;
+    right: 10px;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    border-bottom: 2px solid #000000;
+    margin-right: 170px;
+}

@@ -1,0 +1,22 @@
+{% extends 'testing/base.html' %}
+<!-- auto_test_list.html <a href="{% url 'testing:run_auto_test' auto_test.pk %}">Run</a> -->
+{% block content %}
+{% include 'testing/sidebar_content.html' %}
+
+<div class="check-list-container">
+    <a href="{% url 'testing:auto_test_create' %}" class="create-checklist-button">Добавить новый автотест</a>
+    <a href="{% url 'testing:runall_autotests' %}" class="run_autotest-button">Запустить автотесты</a>
+    <h4>Автотесты:</h4>
+    <div class="created-checklist">
+        {% for auto_test in auto_test %}
+        <a href="{% url 'testing:auto_test_detail' auto_test.id %}" class="checklist-link">
+            <div class="checklist-item {% if auto_test.status == 'not_tested' %}not-tested{% elif auto_test.status == 'passed' %}passed{% elif auto_test.status == 'failed' %}failed{% endif %}">
+                <strong>{{ auto_test.name }} - Статус: {{ auto_test.status }}</strong>         
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'testing/sidebar.html' %}
+{% load static %}
+{% block sidebar_content %}
+<div class="stats-cont">
+<h1>Статистика</h1>
+    <div class="stats-container">
+        <div class="stats-section-1">
+            <h2>Тест-кейсы</h2>
+            <p>Total: {{ stats.test_cases.total }}</p>
+            <p>Passed: {{ stats.test_cases.passed }}</p>
+            <p>Failed: {{ stats.test_cases.failed }}</p>
+        </div>
+        <div class="stats-section-2">
+            <h2>Чек-листы</h2>
+            <p>Total: {{ stats.checklists.total }}</p>
+            <p>Passed: {{ stats.checklists.passed }}</p>
+            <p>Failed: {{ stats.checklists.failed }}</p>
+        </div>
+        <div class="stats-section-3">
+            <h2>Автотесты</h2>
+            <p>Total: {{ stats.autotests.total }}</p>
+            <p>Passed: {{ stats.autotests.passed }}</p>
+            <p>Failed: {{ stats.autotests.failed }}</p>
+        </div>
+        <div class="stats-section-4">
+            <h2>Баг-репорты</h2>
+            <p>Total: {{ stats.bug.total }}</p>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+

@@ -1,0 +1,41 @@
+<!-- auto_test_detail.html -->
+{% extends 'testing/base.html' %}
+
+{% block content %}
+
+{% include 'testing/sidebar_content.html' %}
+
+<div class="check-list-container">
+    <a href="{% url 'testing:auto_test_create' %}" class="create-checklist-button">Добавить новый автотест</a>
+    <a href="{% url 'testing:runall_autotests' %}" class="run_autotest-button">Запустить автотесты</a>
+    <h4>Автотесты:</h4>
+    <div class="created-checklist">
+        {% for auto_test in auto_tests %}
+        <a href="{% url 'testing:auto_test_detail' auto_test.id %}" class="checklist-link">
+            <div class="checklist-item {% if auto_test.status == 'not_tested' %}not-tested{% elif auto_test.status == 'passed' %}passed{% elif auto_test.status == 'failed' %}failed{% endif %}">
+                <strong>{{ auto_test.name }} - Статус: {{ auto_test.status }}</strong>         
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+    <div class="check-list-info">
+        <div class="autotest-details">
+            <h2>Название: {{ auto_test.name }}</h2>
+            <h3>Описание: {{ auto_test.description }}</h3>
+            <h6>Статус: {{ auto_test.status }}</h6>
+            <h4>Создано: {{ auto_test.creation_date|date:"d.m.Y H:i" }}</h4>
+            <h5>Обновлено: {{ auto_test.updated_at|date:"d.m.Y H:i" }}</h5>
+            <h7>Последний запуск: {{ auto_test.last_run_date|date:"d.m.Y H:i" }}</h7>
+            <a href="{% url 'testing:run_auto_test' auto_test.pk %}" class="run_autotest2-button">Run</a>
+            <a href="{% url 'testing:auto_test_edit' auto_test.id %}" class="edit-clbutton">Редактировать</a>  
+            <form action="{% url 'testing:auto_test_delete' auto_test.id %}" method="post" class="delete-clform">
+                {% csrf_token %}
+                <button type="submit" class="delete-clbutton">Удалить</button>
+            </form>
+        </div>
+    </div>  
+</div>
+
+{% endblock %}
